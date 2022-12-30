@@ -1,40 +1,54 @@
 import { FormControl, FormLabel, Input, Button, Select, RadioGroup, Radio, FormHelperText, HStack } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
+import { useContext, useState } from 'react';
+import { GiftsContext } from '../contexts/gifts';
+import Gift from '../models/gift';
+import fetchOpenAI from '../services/open-ai-service';
 
 function Forms() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const initialFieldValues: Gift = {
+    preference: '',
+    giftType: 'saving',
+    intimacy: 'medium'
+  };
+
+  const {setChoices} = useContext(GiftsContext);
+
   return (
     <Formik
-      initialValues={{ preference: '', giftType: 'saving', intimacy: 'medium' }}
-      onSubmit={(values, actions) => {
-        console.log(values);
-        setInterval(() => {
-          actions.setSubmitting(false);
-        }, 1000);
+      initialValues={initialFieldValues}
+      onSubmit={async (values: Gift, actions) => {
+        setIsLoading(true);
+        setChoices(await fetchOpenAI(values));
+        isLoading ? actions.setSubmitting(true) : actions.setSubmitting(false);
       }}
     >
       {(props) => (
         <Form>
           <Field name='preference'>
-            {({ field, form }) => (
+            {({ field }) => (
               <FormControl isRequired>
                 <FormLabel>Preferências do amigo</FormLabel>
-                <Input {...field} placeholder='Ex. Naruto, Game of Thrones etc.' />
+                <Input {...field} placeholder='Ex. Naruto, Game of Thrones, Cinema etc.' />
               </FormControl>
             )}
           </Field>
           <Field name='giftType'>
-            {({ field, form }) => (
+            {({ field }) => (
               <FormControl mt={4}>
                 <FormLabel>Tipo de presente</FormLabel>
                 <Select {...field}>
                   <option value='saving'>Econômico</option>
                   <option value='memorable'>Memorável</option>
+                  <option value='expensive'>Luxuoso</option>
                 </Select>
               </FormControl>
             )}
           </Field>
           <Field name='intimacy'>
-            {({ field, form }) => (
+            {({ field }) => (
               <FormControl mt={4}>
               <FormLabel>Nivel de intimidade</FormLabel>
               <RadioGroup {...field}>
