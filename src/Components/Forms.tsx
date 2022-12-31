@@ -1,27 +1,40 @@
-import { FormControl, FormLabel, Input, Button, Select, RadioGroup, Radio, FormHelperText, HStack } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Button, Select, RadioGroup, Radio, HStack } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { useContext, useState } from 'react';
 import { GiftsContext } from '../contexts/gifts';
 import Gift from '../models/gift';
 import fetchOpenAI from '../services/open-ai-service';
+import { googleApi } from '../services/googleService';
 
 function Forms() {
   const [isLoading, setIsLoading] = useState(false);
-
+  const { addImages, setChoices, setImagesLinks } = useContext(GiftsContext);
+  let newChoices: string[] = [];
   const initialFieldValues: Gift = {
     preference: '',
     giftType: 'saving',
     intimacy: 'medium'
   };
 
-  const {setChoices} = useContext(GiftsContext);
-
+  async function getImagesLinks(arr: string[]): Promise<string[]> {
+    let imageLinks: string[] = [];
+  
+    for (const el of arr) {
+      const { data } = await googleApi(el.split('-')[0]);
+      imageLinks.push(data.items[0].link);
+    }
+    return imageLinks;
+  }
+  
   return (
     <Formik
       initialValues={initialFieldValues}
-      onSubmit={async (values: Gift, actions) => {
+      onSubmit={async (values: Gift, actions: { setSubmitting: (arg0: boolean) => any; }) => {
         setIsLoading(true);
-        setChoices(await fetchOpenAI(values));
+        newChoices = await fetchOpenAI(values);
+        setChoices(newChoices);
+        // addImages(await getImagesLinks(newChoices));
+        setImagesLinks(await getImagesLinks(newChoices));
         isLoading ? actions.setSubmitting(true) : actions.setSubmitting(false);
       }}
     >
@@ -58,11 +71,10 @@ function Forms() {
                   <Radio value='high'>Alta</Radio>
                 </HStack>
               </RadioGroup>
-              {/* <FormHelperText>Quão intimo poderão ser os presentes sugeridos?</FormHelperText> */}
             </FormControl>
             )}
           </Field>
-          <Button mt={4} colorScheme='teal' isLoading={props.isSubmitting} type='submit'>
+          <Button mt='40px' colorScheme='teal' isLoading={props.isSubmitting} type='submit'>
             Enviar
           </Button>
         </Form>
