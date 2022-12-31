@@ -8,8 +8,8 @@ import { googleApi } from '../services/googleService';
 
 function Forms() {
   const [isLoading, setIsLoading] = useState(false);
-  const { addImages, setChoices, setImagesLinks } = useContext(GiftsContext);
-  let newChoices: string[] = [];
+  const { setChoices, setImagesLinks } = useContext(GiftsContext);
+
   const initialFieldValues: Gift = {
     preference: '',
     giftType: 'saving',
@@ -23,6 +23,7 @@ function Forms() {
       const { data } = await googleApi(el.split('-')[0]);
       imageLinks.push(data.items[0].link);
     }
+
     return imageLinks;
   }
   
@@ -31,10 +32,14 @@ function Forms() {
       initialValues={initialFieldValues}
       onSubmit={async (values: Gift, actions: { setSubmitting: (arg0: boolean) => any; }) => {
         setIsLoading(true);
+        let newChoices: string[] = [];
+        let newLinks: string[] = [];
         newChoices = await fetchOpenAI(values);
-        setChoices(newChoices);
-        // addImages(await getImagesLinks(newChoices));
-        setImagesLinks(await getImagesLinks(newChoices));
+        newLinks = await getImagesLinks(newChoices);
+        if (newLinks.length){
+          setChoices(newChoices);
+          setImagesLinks(newLinks);
+        }
         isLoading ? actions.setSubmitting(true) : actions.setSubmitting(false);
       }}
     >

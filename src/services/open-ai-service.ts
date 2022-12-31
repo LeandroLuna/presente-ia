@@ -7,7 +7,7 @@ const API_KEY = process.env.REACT_APP_OPENAI_API_KEY
 
 async function fetchOpenAI(userInput: Gift) {
   const PROMPT = `
-  Me sugira uma lista de 5 presentes para uma pessoa que tem os interesses listados abaixo. Os presentes precisam ser do tipo ${userInput.giftType} e o meu nivel de intimidade com essa pessoa é ${userInput.intimacy}. Não enumere os itens da lista. Me explique cada item com no máximo 2 frases. Indique o valor do item sugerido ao final, separado por um hifen, convertido para reais.
+  Me sugira uma lista de 5 presentes para uma pessoa que tem os interesses listados abaixo. Os presentes precisam ser do tipo ${userInput.giftType} e o meu nivel de intimidade com essa pessoa é ${userInput.intimacy}. Não enumere os itens da lista. Me explique cada item com no máximo 2 frases e a explicação do item não pode conter hifens em nenhum momento do texto. Indique o valor do item sugerido ao final, separado por um hifen, convertido para reais.
   
   Interesses: ${userInput.preference}
 
@@ -38,8 +38,8 @@ async function fetchOpenAI(userInput: Gift) {
     const formatedData = data.choices.pop().text.split('\n').map((choice: string) => choice.trim().replace(/^\d+\. /, ''));
     return formatedData;
   } catch (err) {
-    console.log('Error: ', err); // Dev
-    // alert('Capacidade de novas solicitações de presentes esgotadas Volte amanhã para tentar novamente!') // Prod
+    console.log('Error OpenAI: ', err);
+    alert('A capacidade de realizar novas solicitações de presentes está esgotada. Por favor, volte em outro dia para tentar novamente.') // Prod
   }
 }
 

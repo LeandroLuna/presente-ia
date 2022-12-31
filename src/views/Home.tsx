@@ -6,9 +6,9 @@ import GiftSuggestionCard from '../Components/GiftSuggestionCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 
-function Home() {
-  const { choices, imagesLinks } = useContext(GiftsContext);
-
+function Home() { 
+  const {choices, imagesLinks} = useContext(GiftsContext);
+  
   return (
     <Box bgColor='black' display='flex' flexDirection='column' justifyContent='center' minH='100vh'>
       <Container maxW='2xl' color='white' textAlign='center' marginY='40px' flexDirection='column'>
@@ -37,7 +37,7 @@ function Home() {
                   {choices.map((choice: string, index: number) => {
                     return (
                       <SwiperSlide key={index}>
-                        <GiftSuggestionCard props={choice}/>
+                        <GiftSuggestionCard suggestion={choice} imageLink={imagesLinks[index]}/>
                       </SwiperSlide>
                     );
                   })}

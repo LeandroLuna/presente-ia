@@ -1,6 +1,10 @@
 .swiper {
     width: 100%;
     height: 100%;
+
+    border: 1px solid white;
+    border-radius: 20px;
+    border-width: 2px;
 }
 
 .swiper-slide {
@@ -18,8 +22,12 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+}
 
-    border: 1px solid white;
-    border-radius: 20px;
-    border-width: 2px;
+.swiper-button-next, .swiper-button-prev{
+    color: white !important;
+}
+
+.swiper-pagination-bullet{
+    background-color: white !important;
 }
