@@ -20,7 +20,7 @@ function Forms() {
     let imageLinks: string[] = [];
   
     for (const el of arr) {
-      const { data } = await googleApi(el.split('-')[0]);
+      const { data } = await googleApi(el.split('--')[0]);
       imageLinks.push(data.items[0].link);
     }
 
@@ -49,7 +49,7 @@ function Forms() {
             {({ field }) => (
               <FormControl isRequired>
                 <FormLabel>Preferências do amigo</FormLabel>
-                <Input {...field} placeholder='Ex. Naruto, Game of Thrones, Cinema etc.' />
+                <Input {...field} placeholder='Ex. Stephen King, Game of Thrones, Quentin Tarantino etc.' />
               </FormControl>
             )}
           </Field>

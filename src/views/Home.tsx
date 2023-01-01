@@ -8,7 +8,7 @@ import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 
 function Home() { 
   const {choices, imagesLinks} = useContext(GiftsContext);
-  
+
   return (
     <Box bgColor='black' display='flex' flexDirection='column' justifyContent='center' minH='100vh'>
       <Container maxW='2xl' color='white' textAlign='center' marginY='40px' flexDirection='column'>
