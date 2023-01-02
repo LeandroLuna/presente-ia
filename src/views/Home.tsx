@@ -12,7 +12,7 @@ function Home() {
   return (
     <Box bgColor='black' display='flex' flexDirection='column' justifyContent='center' minH='100vh'>
       <Container maxW='2xl' color='white' textAlign='center' marginY='40px' flexDirection='column'>
-          <Heading as='h1' size={{base: '2xl', sm: '3xl', md: '4xl'}} noOfLines={1} textTransform='uppercase' letterSpacing='10px'>
+          <Heading as='h1' size={{base: 'xl', sm: '3xl', md: '4xl'}} noOfLines={1} textTransform='uppercase' letterSpacing='10px'>
             Presente.IA
           </Heading>
           <Text fontSize={{base: 16, sm: 'xl'}} my='40px' letterSpacing='1px' lineHeight={{base: '30px', sm: '40px'}}>

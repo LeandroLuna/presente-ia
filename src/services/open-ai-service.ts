@@ -6,6 +6,7 @@ const API_KEY = process.env.REACT_APP_OPENAI_API_KEY
 
 
 async function fetchOpenAI(userInput: Gift) {
+  
   const PROMPT = `
   Me sugira uma lista de 5 presentes para uma pessoa que tem os interesses listados abaixo. Os presentes precisam ser do tipo ${userInput.giftType} e o meu nivel de intimidade com essa pessoa é ${userInput.intimacy}. Não enumere os itens da lista. Me explique cada item com no máximo 2 frases. Indique o valor do item sugerido ao final, separado por dois hifens, convertido para reais.
   

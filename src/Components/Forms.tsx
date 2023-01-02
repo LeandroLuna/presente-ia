@@ -25,11 +25,21 @@ function Forms() {
         imageLinks.push(data.items[0].link);   
       }
     }
-    catch (e){
+    catch (err){
+      // console.log('Error getImagesLinks: ', err)
       alert('A capacidade de carregar novas imagens das sugestões está esgotada. Volte outro dia para tentar novamente a utilização do serviço com as imagens devidamente carregadas. :)') // Prod
     }
 
     return imageLinks;
+  }
+
+  async function getChoices(userInput: Gift){
+    let newChoices: string[] = [];
+    let newLinks: string[] = [];
+    newChoices = await fetchOpenAI(userInput);
+    setChoices(newChoices);
+    newLinks = await getImagesLinks(newChoices);
+    setImagesLinks(newLinks);
   }
   
   return (
@@ -37,14 +47,7 @@ function Forms() {
       initialValues={initialFieldValues}
       onSubmit={async (values: Gift, actions: { setSubmitting: (arg0: boolean) => any; }) => {
         setIsLoading(true);
-        let newChoices: string[] = [];
-        let newLinks: string[] = [];
-        newChoices = await fetchOpenAI(values);
-        setChoices(newChoices);
-        newLinks = await getImagesLinks(newChoices);
-        if (newLinks.length){
-          setImagesLinks(newLinks);
-        }
+        await getChoices(values)
         isLoading ? actions.setSubmitting(true) : actions.setSubmitting(false);
       }}
     >

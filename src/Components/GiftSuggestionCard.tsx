@@ -28,7 +28,7 @@ function GiftSuggestionCard({suggestion, imageLink}) {
           <Text color='white'>
             {description}
           </Text>
-          <Text color='blue.600' fontSize='2xl'>
+          <Text color='#FEFCBF' fontSize='2xl'>
             Valor aproximado: {price}
           </Text>
         </Stack>
