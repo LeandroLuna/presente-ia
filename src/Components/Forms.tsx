@@ -26,7 +26,7 @@ function Forms() {
       }
     }
     catch (e){
-      alert('A capacidade de carregar novas imagens das sugestões está esgotada. Volte em outro dia para tentar novamente a utilização dos serviço com as imagens devidamente carregadas. :)') // Prod
+      alert('A capacidade de carregar novas imagens das sugestões está esgotada. Volte outro dia para tentar novamente a utilização do serviço com as imagens devidamente carregadas. :)') // Prod
     }
 
     return imageLinks;
