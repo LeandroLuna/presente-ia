@@ -18,10 +18,15 @@ function Forms() {
 
   async function getImagesLinks(arr: string[]): Promise<string[]> {
     let imageLinks: string[] = [];
-  
-    for (const el of arr) {
-      const { data } = await googleApi(el.split('--')[0]);
-      imageLinks.push(data.items[0].link);
+    
+    try {
+      for (const el of arr) {
+        const { data } = await googleApi(el.split('--')[0]);
+        imageLinks.push(data.items[0].link);   
+      }
+    }
+    catch (e){
+      alert('A capacidade de carregar novas imagens das sugestões está esgotada. Volte em outro dia para tentar novamente a utilização dos serviço com as imagens devidamente carregadas. :)') // Prod
     }
 
     return imageLinks;
@@ -35,9 +40,9 @@ function Forms() {
         let newChoices: string[] = [];
         let newLinks: string[] = [];
         newChoices = await fetchOpenAI(values);
+        setChoices(newChoices);
         newLinks = await getImagesLinks(newChoices);
         if (newLinks.length){
-          setChoices(newChoices);
           setImagesLinks(newLinks);
         }
         isLoading ? actions.setSubmitting(true) : actions.setSubmitting(false);

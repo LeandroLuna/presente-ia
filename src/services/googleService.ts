@@ -15,6 +15,5 @@ export const googleApi = async (query: string) => {
         return response;
     }catch(err){
         // console.log('Error GoogleAPI: ', err) // Dev
-        alert('A capacidade de realizar novas solicitações de presentes está esgotada. Por favor, volte em outro dia para tentar novamente.') // Prod
     }
 }
