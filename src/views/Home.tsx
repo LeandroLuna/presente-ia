@@ -42,6 +42,7 @@ function Home() {
                     );
                   })}
                 </Swiper>
+                <Text color='white' mt='30px'>Clique na sugestão para visualizá-la no Google Shopping.</Text>
               </Box>
             </>
           ) : (
