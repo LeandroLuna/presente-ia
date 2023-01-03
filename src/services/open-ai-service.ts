@@ -14,9 +14,8 @@ async function fetchOpenAI(userInput: Gift) {
 
   Exemplo:
   Miniatura do Trono de Ferro -- A Miniatura do Trono de Ferro é uma réplica em miniatura do Trono de Ferro, um dos elementos mais icônicos da série de televisão Game of Thrones. É um assento de pedra esculpido com uma aparência sombria e imponente, e é usado pelo governante do reino como símbolo de sua autoridade. -- R$50.
-  Figurinha colecionável do trono de ferro -- As figurinhas colecionáveis do Trono de Ferro são itens de colecionador baseados na série de televisão Game of Thrones, produzida pela HBO. São figurinhas de pequeno tamanho, geralmente em formato de cartão ou de metal, que representam personagens, cenas ou elementos da série. -- R$30. 
-  Quadro da casa Stark -- O Quadro da Casa Stark é um item de decoração baseado na série de televisão Game of Thrones, produzida pela HBO. A série é baseada nas séries de livros "As Crônicas de Gelo e Fogo" do autor George R.R. Martin e se passa em um mundo fictício de fantasia medieval onde várias famílias disputam o trono de um reino dividido. -- R$60.
-  Livro de memórias de Game of Thrones -- O Livro de Memórias de Game of Thrones é um livro que contém fotos, anotações e reflexões dos atores, equipe e criador da série de televisão Game of Thrones, produzida pela HBO. A série é baseada nas séries de livros "As Crônicas de Gelo e Fogo" do autor George R.R. Martin e se passa em um mundo fictício de fantasia medieval onde várias famílias disputam o trono de um reino dividido. -- R$40.
+  Livro de Stephen King -- A obra literária de Stephen King é muito famosa e seu estilo de escrita é único. Escolha um livro de sua preferência e presenteie essa pessoa com a obra do autor que ela tanto admira. -- R$30. 
+  Camiseta de Reservoir Dogs -- A camiseta de Reservoir Dogs é uma camiseta de algodão de excelente qualidade, com a estampa da icônica cena do filme Reservoir Dogs, dirigido por Quentin Tarantino, que foi lançado em 1992. É uma camiseta versátil e confortável, perfeita para qualquer tipo de look. -- R$60.
 
   Sugestões:
   `

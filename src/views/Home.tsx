@@ -1,6 +1,6 @@
 import Forms from '../Components/Forms';
 import { Heading, Text, Container, Box, Highlight } from '@chakra-ui/react';
-import { useContext} from 'react';
+import { useContext, useEffect} from 'react';
 import { GiftsContext } from '../contexts/gifts';
 import GiftSuggestionCard from '../Components/GiftSuggestionCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,6 +8,9 @@ import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 
 function Home() { 
   const {choices, imagesLinks} = useContext(GiftsContext);
+
+  useEffect(() => {
+  }, [choices])
 
   return (
     <Box bgColor='black' display='flex' flexDirection='column' justifyContent='center' minH='100vh'>
